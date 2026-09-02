@@ -1,177 +1,233 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const skills = [
+    { name: "Data Analysis", value: 45, color: "danger" },
+    { name: "Statistical Methods", value: 60, color: "warning" },
+    { name: "Data Visualization", value: 72, color: "success" },
+    { name: "Python", value: 85, color: "primary" },
+  ];
+
+  const recommendations = [
+    {
+      icon: "📊",
+      title: "Data Analysis Fundamentals",
+      text: "Recommended based on your competency gap.",
+    },
+    {
+      icon: "📈",
+      title: "Statistical Methods",
+      text: "Improve your statistical knowledge.",
+    },
+    {
+      icon: "🐍",
+      title: "Python for Data Science",
+      text: "Strengthen your Python skills.",
+    },
+  ];
+
   return (
     <div className="dashboard">
 
       {/* Sidebar */}
       <aside className="sidebar">
 
-        <div className="logo">
-          <h2>LearnAI</h2>
-          <p>Smart Learning Platform</p>
+        <div className="brand">
+          <div className="brand-icon">🎓</div>
+          <div>
+            <h2>LearnAI</h2>
+            <span>Smart Learning</span>
+          </div>
         </div>
 
         <nav className="menu">
-          <a href="#" className="active">🏠 Dashboard</a>
-          <a href="#">📊 Competency Gaps</a>
-          <a href="#">🎓 Training</a>
-          <a href="#">📚 Learning Resources</a>
-          <a href="#">📝 Quizzes</a>
-          <a href="#">📈 My Progress</a>
+
+          <button className="menu-item active">
+            <span>🏠</span>
+            Dashboard
+          </button>
+
+          <button className="menu-item">
+            <span>📊</span>
+            Competency Gaps
+          </button>
+
+          <button className="menu-item">
+            <span>🎓</span>
+            Training
+          </button>
+
+          <button className="menu-item">
+            <span>📚</span>
+            Learning Resources
+          </button>
+
+          <button className="menu-item">
+            <span>📝</span>
+            Quizzes
+          </button>
+
+          <button className="menu-item">
+            <span>📈</span>
+            My Progress
+          </button>
+
         </nav>
 
-        <div className="bottom-menu">
-          <a href="#">⚙️ Settings</a>
-          <a href="#">🚪 Logout</a>
+        <div className="sidebar-bottom">
+
+          <button className="menu-item">
+            <span>⚙️</span>
+            Settings
+          </button>
+
+          <button
+            className="menu-item logout"
+            onClick={() => navigate("/login")}
+          >
+            <span>🚪</span>
+            Logout
+          </button>
+
         </div>
 
       </aside>
 
 
       {/* Main Content */}
-      <main className="main">
+      <main className="main-content">
 
-        {/* Top Header */}
-        <header className="header">
+        {/* Header */}
+        <header className="top-header">
 
           <div>
-            <h1>Welcome back, Sindhu! 👋</h1>
-            <p>
+            <p className="welcome-small">LEARNING DASHBOARD</p>
+
+            <h1>
+              Welcome back, Sindhu! <span>👋</span>
+            </h1>
+
+            <p className="header-text">
               Continue your learning journey and improve your competencies.
             </p>
           </div>
 
           <div className="profile">
-            <div className="avatar">S</div>
 
-            <div>
-              <strong>Sindhu</strong>
-              <span>Learner</span>
+            <div className="notification">
+              🔔
+              <span></span>
             </div>
+
+            <div className="avatar">
+              S
+            </div>
+
+            <div className="profile-info">
+              <strong>Sindhu</strong>
+              <small>Learner</small>
+            </div>
+
           </div>
 
         </header>
 
 
         {/* Statistics */}
-        <section className="stats">
+        <section className="stats-grid">
 
-          <div className="stat-card">
-            <div className="icon">📚</div>
+          <div className="stat-card purple">
+            <div className="stat-icon">📚</div>
+
             <div>
-              <h3>12</h3>
+              <h2>12</h2>
               <p>Courses Completed</p>
+              <small>+2 this month</small>
             </div>
           </div>
 
-          <div className="stat-card">
-            <div className="icon">🎯</div>
+
+          <div className="stat-card blue">
+            <div className="stat-icon">🎯</div>
+
             <div>
-              <h3>78%</h3>
+              <h2>78%</h2>
               <p>Overall Progress</p>
+              <small>+8% this week</small>
             </div>
           </div>
 
-          <div className="stat-card">
-            <div className="icon">📝</div>
+
+          <div className="stat-card green">
+            <div className="stat-icon">📝</div>
+
             <div>
-              <h3>86%</h3>
+              <h2>86%</h2>
               <p>Average Quiz Score</p>
+              <small>Excellent performance</small>
             </div>
           </div>
 
-          <div className="stat-card">
-            <div className="icon">🔥</div>
+
+          <div className="stat-card orange">
+            <div className="stat-icon">🔥</div>
+
             <div>
-              <h3>7 Days</h3>
+              <h2>7 Days</h2>
               <p>Learning Streak</p>
+              <small>Keep it going!</small>
             </div>
           </div>
 
         </section>
 
 
-        {/* Main Cards */}
-        <section className="content-grid">
+        {/* Main Grid */}
+        <section className="main-grid">
 
-          {/* Competency Gap */}
-          <div className="card">
 
-            <div className="card-title">
-              <h2>Competency Gap Analysis</h2>
-              <button>View All</button>
+          {/* Competency */}
+          <div className="dashboard-card">
+
+            <div className="card-header">
+              <div>
+                <span className="card-label">AI ANALYSIS</span>
+                <h2>Competency Gap Analysis</h2>
+              </div>
+
+              <button className="view-btn">
+                View All →
+              </button>
             </div>
 
-            <p className="description">
+            <p className="card-description">
               AI has identified the following areas that need improvement.
             </p>
 
-            <div className="skill">
 
-              <div className="skill-header">
-                <span>Data Analysis</span>
-                <strong>45%</strong>
-              </div>
+            <div className="skills">
 
-              <div className="progress-bg">
-                <div
-                  className="progress red"
-                  style={{ width: "45%" }}
-                ></div>
-              </div>
+              {skills.map((skill) => (
+                <div className="skill" key={skill.name}>
 
-            </div>
+                  <div className="skill-top">
+                    <span>{skill.name}</span>
+                    <strong>{skill.value}%</strong>
+                  </div>
 
+                  <div className="progress-track">
+                    <div
+                      className={`progress-fill ${skill.color}`}
+                      style={{ width: `${skill.value}%` }}
+                    ></div>
+                  </div>
 
-            <div className="skill">
-
-              <div className="skill-header">
-                <span>Statistical Methods</span>
-                <strong>60%</strong>
-              </div>
-
-              <div className="progress-bg">
-                <div
-                  className="progress yellow"
-                  style={{ width: "60%" }}
-                ></div>
-              </div>
-
-            </div>
-
-
-            <div className="skill">
-
-              <div className="skill-header">
-                <span>Data Visualization</span>
-                <strong>72%</strong>
-              </div>
-
-              <div className="progress-bg">
-                <div
-                  className="progress green"
-                  style={{ width: "72%" }}
-                ></div>
-              </div>
-
-            </div>
-
-
-            <div className="skill">
-
-              <div className="skill-header">
-                <span>Python</span>
-                <strong>85%</strong>
-              </div>
-
-              <div className="progress-bg">
-                <div
-                  className="progress blue"
-                  style={{ width: "85%" }}
-                ></div>
-              </div>
+                </div>
+              ))}
 
             </div>
 
@@ -179,72 +235,43 @@ function Dashboard() {
 
 
           {/* AI Recommendations */}
-          <div className="card">
+          <div className="dashboard-card">
 
-            <div className="card-title">
-              <h2>🤖 AI Training Recommendations</h2>
-              <button>View All</button>
-            </div>
-
-            <div className="recommendation">
-
-              <div className="recommend-icon">
-                📊
-              </div>
-
+            <div className="card-header">
               <div>
-                <h3>Data Analysis Fundamentals</h3>
-
-                <p>
-                  Recommended based on your competency gap.
-                </p>
-
-                <button className="start-btn">
-                  Start Learning
-                </button>
+                <span className="card-label">PERSONALIZED FOR YOU</span>
+                <h2>🤖 AI Recommendations</h2>
               </div>
 
+              <button className="view-btn">
+                View All →
+              </button>
             </div>
 
 
-            <div className="recommendation">
+            <div className="recommendations">
 
-              <div className="recommend-icon">
-                📈
-              </div>
+              {recommendations.map((item) => (
+                <div className="recommendation" key={item.title}>
 
-              <div>
-                <h3>Statistical Methods</h3>
+                  <div className="recommend-icon">
+                    {item.icon}
+                  </div>
 
-                <p>
-                  Improve your statistical knowledge.
-                </p>
+                  <div className="recommend-content">
 
-                <button className="start-btn">
-                  Start Learning
-                </button>
-              </div>
+                    <h3>{item.title}</h3>
 
-            </div>
+                    <p>{item.text}</p>
 
+                    <button className="start-btn">
+                      Start Learning →
+                    </button>
 
-            <div className="recommendation">
+                  </div>
 
-              <div className="recommend-icon">
-                🐍
-              </div>
-
-              <div>
-                <h3>Python for Data Science</h3>
-
-                <p>
-                  Strengthen your Python skills.
-                </p>
-
-                <button className="start-btn">
-                  Start Learning
-                </button>
-              </div>
+                </div>
+              ))}
 
             </div>
 
@@ -253,80 +280,118 @@ function Dashboard() {
         </section>
 
 
-        {/* Bottom Section */}
+        {/* Bottom Grid */}
         <section className="bottom-grid">
 
 
-          {/* Quiz */}
-          <div className="card">
+          {/* Recent Quiz */}
+          <div className="dashboard-card quiz-card">
 
-            <div className="card-title">
-              <h2>📝 Recent Quiz</h2>
-              <button>View All</button>
-            </div>
-
-            <div className="quiz-box">
+            <div className="card-header">
 
               <div>
-                <h3>Statistical Methods</h3>
-                <p>20 Questions</p>
+                <span className="card-label">LATEST ACTIVITY</span>
+                <h2>📝 Recent Quiz</h2>
               </div>
 
-              <div className="score">
+              <button className="view-btn">
+                View All →
+              </button>
+
+            </div>
+
+
+            <div className="quiz-content">
+
+              <div className="quiz-icon">
+                📊
+              </div>
+
+              <div className="quiz-info">
+                <h3>Statistical Methods</h3>
+                <p>20 Questions • Completed today</p>
+              </div>
+
+              <div className="quiz-score">
                 <strong>86%</strong>
                 <span>Score</span>
               </div>
 
             </div>
 
-            <button className="quiz-btn">
+            <button className="full-btn">
               Take New Quiz
             </button>
 
           </div>
 
 
-          {/* Progress */}
-          <div className="card progress-card">
+          {/* Learning Progress */}
+          <div className="dashboard-card progress-card">
 
-            <h2>📈 Learning Progress</h2>
+            <div className="card-header">
+              <div>
+                <span className="card-label">YOUR JOURNEY</span>
+                <h2>📈 Learning Progress</h2>
+              </div>
+            </div>
 
-            <div className="circle">
 
-              <div className="circle-inner">
-                <strong>78%</strong>
-                <span>Completed</span>
+            <div className="progress-section">
+
+              <div className="progress-circle">
+
+                <div className="circle-content">
+                  <strong>78%</strong>
+                  <span>Completed</span>
+                </div>
+
+              </div>
+
+              <div className="progress-text">
+
+                <h3>Great progress! 🎉</h3>
+
+                <p>
+                  You're making excellent progress.
+                  Keep learning to reach your target competency level.
+                </p>
+
+                <button className="continue-btn">
+                  Continue Learning →
+                </button>
+
               </div>
 
             </div>
-
-            <p>
-              Keep learning to reach your target competency level.
-            </p>
-
-            <button className="continue-btn">
-              Continue Learning
-            </button>
 
           </div>
 
         </section>
 
 
-        {/* Upload Material */}
-        <section className="upload-card">
+        {/* Upload Section */}
+        <section className="upload-section">
 
-          <div>
-            <h2>📄 Upload Learning Material</h2>
+          <div className="upload-icon">
+            📄
+          </div>
+
+          <div className="upload-text">
+
+            <span className="card-label">AI POWERED</span>
+
+            <h2>Upload Learning Material</h2>
 
             <p>
               Upload PDF, PPT or DOC files and let AI generate
               quizzes and identify competency gaps.
             </p>
+
           </div>
 
           <button className="upload-btn">
-            Upload Material
+            + Upload Material
           </button>
 
         </section>
