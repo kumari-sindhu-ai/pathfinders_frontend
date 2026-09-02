@@ -1,0 +1,251 @@
+.gap-page {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f6f7fb;
+  color: #1e293b;
+}
+
+/* Header */
+
+.gap-header {
+  margin-bottom: 30px;
+}
+
+.gap-header h1 {
+  font-size: 32px;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.gap-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* Summary Cards */
+
+.gap-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+.summary-card h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.summary-card h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #4f46e5;
+}
+
+.summary-card span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Skills Section */
+
+.skills-section {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+.section-title {
+  margin-bottom: 25px;
+}
+
+.section-title h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.section-title p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Skill Grid */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skill-card {
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fafbff;
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.skill-top h3 {
+  margin: 0 0 7px;
+  font-size: 17px;
+}
+
+.skill-top p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.score {
+  min-width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Progress Bar */
+
+.progress-container {
+  width: 100%;
+  height: 9px;
+  margin: 20px 0 12px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+/* Bottom */
+
+.skill-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.skill-bottom span {
+  color: #64748b;
+}
+
+.skill-bottom strong {
+  color: #4f46e5;
+}
+
+/* Recommendation */
+
+.recommendation-box {
+  margin-top: 30px;
+  padding: 25px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 18px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.recommendation-icon {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.recommendation-box h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.recommendation-box p {
+  margin: 0 0 18px;
+  color: #475569;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.recommendation-box button {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recommendation-box button:hover {
+  background: #4338ca;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .gap-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .gap-page {
+    padding: 20px;
+  }
+
+  .gap-header h1 {
+    font-size: 25px;
+  }
+
+  .skills-section {
+    padding: 20px;
+  }
+
+  .recommendation-box {
+    flex-direction: column;
+  }
+}
