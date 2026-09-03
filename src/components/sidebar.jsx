@@ -1,87 +1,66 @@
-{/* Sidebar */}
-<aside className="sidebar">
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Sidebar.css";
 
-  {/* Logo */}
-  <div className="brand">
-    <div className="brand-icon">🎓</div>
+function Sidebar() {
+  const navigate = useNavigate();
 
-    <div>
-      <h2>LearnAI</h2>
-      <span>Smart Learning</span>
-    </div>
-  </div>
+  return (
+    <aside className="sidebar">
 
+      {/* Logo */}
+      <div className="brand">
+        <div className="brand-icon">🎓</div>
+        <div>
+          <h2>LearnAI</h2>
+          <span>Smart Learning</span>
+        </div>
+      </div>
 
-  {/* Menu */}
-  <nav className="menu">
+      {/* Menu */}
+      <nav className="menu">
 
-    <button
-      className="menu-item active"
-      onClick={() => navigate("/dashboard")}
-    >
-      <span>🏠</span>
-      Dashboard
-    </button>
+        <button onClick={() => navigate("/dashboard")}>
+          🏠 Dashboard
+        </button>
 
-    <button
-      className="menu-item"
-      onClick={() => navigate("/gap-analysis")}
-    >
-      <span>📊</span>
-      Competency Gaps
-    </button>
+        <button onClick={() => navigate("/competency-gap")}>
+          📊 Competency Gaps
+        </button>
 
-    <button
-      className="menu-item"
-      onClick={() => navigate("/training")}
-    >
-      <span>🎓</span>
-      Training
-    </button>
+        <button onClick={() => navigate("/training")}>
+          🎓 Training
+        </button>
 
-    <button
-      className="menu-item"
-      onClick={() => navigate("/resources")}
-    >
-      <span>📚</span>
-      Learning Resources
-    </button>
+        <button onClick={() => navigate("/resources")}>
+          📚 Learning Resources
+        </button>
 
-    <button
-      className="menu-item"
-      onClick={() => navigate("/quiz")}
-    >
-      <span>📝</span>
-      Quizzes
-    </button>
+        <button onClick={() => navigate("/quiz")}>
+          📝 Quizzes
+        </button>
 
-    <button
-      className="menu-item"
-      onClick={() => navigate("/progress")}
-    >
-      <span>📈</span>
-      My Progress
-    </button>
+        <button onClick={() => navigate("/progress")}>
+          📈 My Progress
+        </button>
 
-  </nav>
+      </nav>
 
+      {/* Bottom */}
+      <div className="sidebar-bottom">
 
-  {/* Bottom Menu */}
-  <div className="sidebar-bottom">
+        <button onClick={() => navigate("/settings")}>
+          ⚙️ Settings
+        </button>
 
-    <button className="menu-item">
-      <span>⚙️</span>
-      Settings
-    </button>
+        <button onClick={() => navigate("/login")}>
+          🚪 Logout
+        </button>
 
-    <button
-      className="menu-item logout"
-      onClick={() => navigate("/login")}
-    >
-      <span>🚪</span>
-      Logout
-    </button>
+      </div>
 
-  </div>
+    </aside>
+  );
+}
 
-</aside>
+export default Sidebar;
