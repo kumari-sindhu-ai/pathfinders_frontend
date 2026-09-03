@@ -1,0 +1,145 @@
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+
+  padding: 25px 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 100;
+}
+
+
+/* Brand */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 5px 10px 30px;
+}
+
+.brand-icon {
+  width: 45px;
+  height: 45px;
+
+  background: #6366f1;
+  color: white;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.brand span {
+  display: block;
+  margin-top: 3px;
+
+  font-size: 11px;
+  color: #6b7280;
+}
+
+
+/* Menu */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+/* Menu Item */
+
+.menu-item {
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  padding: 13px 14px;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  color: #4b5563;
+
+  font-size: 14px;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+.menu-item span {
+  width: 22px;
+  font-size: 18px;
+}
+
+
+/* Hover */
+
+.menu-item:hover {
+  background: #f3f4ff;
+  color: #6366f1;
+}
+
+
+/* Active */
+
+.menu-item.active {
+  background: #eef2ff;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+
+/* Bottom */
+
+.sidebar-bottom {
+  margin-top: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+/* Logout */
+
+.menu-item.logout {
+  color: #ef4444;
+}
+
+.menu-item.logout:hover {
+  background: #fef2f2;
+  color: #dc2626;
+}
