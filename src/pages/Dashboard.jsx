@@ -1,58 +1,40 @@
 import React from "react";
 import "./Dashboard.css";
 
-function Dashboard() {
-  const skills = [
-    { name: "Data Analysis", value: 45, color: "danger" },
-    { name: "Statistical Methods", value: 60, color: "warning" },
-    { name: "Data Visualization", value: 72, color: "success" },
-    { name: "Python", value: 85, color: "primary" },
-  ];
-
-  const recommendations = [
-    {
-      icon: "📊",
-      title: "Data Analysis Fundamentals",
-      text: "Recommended based on your competency gap.",
-    },
-    {
-      icon: "📈",
-      title: "Statistical Methods",
-      text: "Improve your statistical knowledge.",
-    },
-    {
-      icon: "🐍",
-      title: "Python for Data Science",
-      text: "Strengthen your Python skills.",
-    },
-  ];
-
+function Dashboard({ sidebarOpen, setSidebarOpen }) {
   return (
     <div className="dashboard">
 
-      {/* Main Content */}
-      <main className="main-content">
+      <main
+        className={`main-content ${
+          sidebarOpen ? "sidebar-open" : "sidebar-closed"
+        }`}
+      >
 
-        {/* Header */}
+        {/* HEADER */}
         <header className="top-header">
 
-          <div>
-            <p className="welcome-small">LEARNING DASHBOARD</p>
+          <div className="welcome-section">
+
+            <p className="welcome-small">
+              LEARNING DASHBOARD
+            </p>
 
             <h1>
-              Welcome back, Sindhu! <span>👋</span>
+              Welcome back, Sindhu! 👋
             </h1>
 
             <p className="header-text">
               Continue your learning journey and improve your competencies.
             </p>
+
           </div>
 
+          {/* RIGHT SIDE */}
           <div className="profile">
 
             <div className="notification">
               🔔
-              <span></span>
             </div>
 
             <div className="avatar">
@@ -64,15 +46,24 @@ function Dashboard() {
               <small>Learner</small>
             </div>
 
+            {/* THREE DOT */}
+            <button
+              className="three-dot"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              title={sidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+            >
+              ⋮
+            </button>
+
           </div>
 
         </header>
 
 
-        {/* Statistics */}
+        {/* STATS */}
         <section className="stats-grid">
 
-          <div className="stat-card purple">
+          <div className="stat-card">
             <div className="stat-icon">📚</div>
 
             <div>
@@ -83,7 +74,7 @@ function Dashboard() {
           </div>
 
 
-          <div className="stat-card blue">
+          <div className="stat-card">
             <div className="stat-icon">🎯</div>
 
             <div>
@@ -94,7 +85,7 @@ function Dashboard() {
           </div>
 
 
-          <div className="stat-card green">
+          <div className="stat-card">
             <div className="stat-icon">📝</div>
 
             <div>
@@ -105,7 +96,7 @@ function Dashboard() {
           </div>
 
 
-          <div className="stat-card orange">
+          <div className="stat-card">
             <div className="stat-icon">🔥</div>
 
             <div>
@@ -118,11 +109,10 @@ function Dashboard() {
         </section>
 
 
-        {/* Main Grid */}
+        {/* COMPETENCY + AI */}
         <section className="main-grid">
 
-
-          {/* Competency */}
+          {/* COMPETENCY GAP */}
           <div className="dashboard-card">
 
             <div className="card-header">
@@ -143,42 +133,77 @@ function Dashboard() {
 
             </div>
 
-
             <p className="card-description">
               AI has identified the following areas that need improvement.
             </p>
 
-
             <div className="skills">
 
-              {skills.map((skill) => (
-                <div className="skill" key={skill.name}>
-
-                  <div className="skill-top">
-                    <span>{skill.name}</span>
-                    <strong>{skill.value}%</strong>
-                  </div>
-
-                  <div className="progress-track">
-
-                    <div
-                      className={`progress-fill ${skill.color}`}
-                      style={{
-                        width: `${skill.value}%`,
-                      }}
-                    ></div>
-
-                  </div>
-
+              <div className="skill">
+                <div className="skill-top">
+                  <span>Data Analysis</span>
+                  <strong>45%</strong>
                 </div>
-              ))}
+
+                <div className="progress-track">
+                  <div
+                    className="progress-fill danger"
+                    style={{ width: "45%" }}
+                  ></div>
+                </div>
+              </div>
+
+
+              <div className="skill">
+                <div className="skill-top">
+                  <span>Statistical Methods</span>
+                  <strong>60%</strong>
+                </div>
+
+                <div className="progress-track">
+                  <div
+                    className="progress-fill warning"
+                    style={{ width: "60%" }}
+                  ></div>
+                </div>
+              </div>
+
+
+              <div className="skill">
+                <div className="skill-top">
+                  <span>Data Visualization</span>
+                  <strong>72%</strong>
+                </div>
+
+                <div className="progress-track">
+                  <div
+                    className="progress-fill success"
+                    style={{ width: "72%" }}
+                  ></div>
+                </div>
+              </div>
+
+
+              <div className="skill">
+                <div className="skill-top">
+                  <span>Python</span>
+                  <strong>85%</strong>
+                </div>
+
+                <div className="progress-track">
+                  <div
+                    className="progress-fill primary"
+                    style={{ width: "85%" }}
+                  ></div>
+                </div>
+              </div>
 
             </div>
 
           </div>
 
 
-          {/* AI Recommendations */}
+          {/* AI RECOMMENDATIONS */}
           <div className="dashboard-card">
 
             <div className="card-header">
@@ -193,43 +218,51 @@ function Dashboard() {
                 </h2>
               </div>
 
-              <button className="view-btn">
-                View All →
-              </button>
+            </div>
+
+
+            <div className="recommendation">
+
+              <div className="recommend-icon">
+                📊
+              </div>
+
+              <div>
+                <h3>
+                  Data Analysis Fundamentals
+                </h3>
+
+                <p>
+                  Recommended based on your competency gap.
+                </p>
+
+                <button className="start-btn">
+                  Start Learning →
+                </button>
+              </div>
 
             </div>
 
 
-            <div className="recommendations">
+            <div className="recommendation">
 
-              {recommendations.map((item) => (
-                <div
-                  className="recommendation"
-                  key={item.title}
-                >
+              <div className="recommend-icon">
+                📈
+              </div>
 
-                  <div className="recommend-icon">
-                    {item.icon}
-                  </div>
+              <div>
+                <h3>
+                  Statistical Methods
+                </h3>
 
-                  <div className="recommend-content">
+                <p>
+                  Improve your statistical knowledge.
+                </p>
 
-                    <h3>
-                      {item.title}
-                    </h3>
-
-                    <p>
-                      {item.text}
-                    </p>
-
-                    <button className="start-btn">
-                      Start Learning →
-                    </button>
-
-                  </div>
-
-                </div>
-              ))}
+                <button className="start-btn">
+                  Start Learning →
+                </button>
+              </div>
 
             </div>
 
@@ -238,12 +271,11 @@ function Dashboard() {
         </section>
 
 
-        {/* Bottom Grid */}
+        {/* BOTTOM */}
         <section className="bottom-grid">
 
-
-          {/* Recent Quiz */}
-          <div className="dashboard-card quiz-card">
+          {/* RECENT QUIZ */}
+          <div className="dashboard-card">
 
             <div className="card-header">
 
@@ -257,10 +289,6 @@ function Dashboard() {
                 </h2>
               </div>
 
-              <button className="view-btn">
-                View All →
-              </button>
-
             </div>
 
 
@@ -271,7 +299,6 @@ function Dashboard() {
               </div>
 
               <div className="quiz-info">
-
                 <h3>
                   Statistical Methods
                 </h3>
@@ -279,11 +306,9 @@ function Dashboard() {
                 <p>
                   20 Questions • Completed today
                 </p>
-
               </div>
 
               <div className="quiz-score">
-
                 <strong>
                   86%
                 </strong>
@@ -291,7 +316,6 @@ function Dashboard() {
                 <span>
                   Score
                 </span>
-
               </div>
 
             </div>
@@ -304,8 +328,8 @@ function Dashboard() {
           </div>
 
 
-          {/* Learning Progress */}
-          <div className="dashboard-card progress-card">
+          {/* LEARNING PROGRESS */}
+          <div className="dashboard-card">
 
             <div className="card-header">
 
@@ -322,33 +346,19 @@ function Dashboard() {
             </div>
 
 
-            <div className="progress-section">
+            <div className="learning-progress">
 
-              <div className="progress-circle">
-
-                <div className="circle-content">
-
-                  <strong>
-                    78%
-                  </strong>
-
-                  <span>
-                    Completed
-                  </span>
-
-                </div>
-
+              <div className="progress-number">
+                78%
               </div>
 
-
-              <div className="progress-text">
+              <div>
 
                 <h3>
                   Great progress! 🎉
                 </h3>
 
                 <p>
-                  You're making excellent progress.
                   Keep learning to reach your target competency level.
                 </p>
 
@@ -365,14 +375,14 @@ function Dashboard() {
         </section>
 
 
-        {/* Upload Section */}
+        {/* UPLOAD */}
         <section className="upload-section">
 
           <div className="upload-icon">
             📄
           </div>
 
-          <div className="upload-text">
+          <div>
 
             <span className="card-label">
               AI POWERED
