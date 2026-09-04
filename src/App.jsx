@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -12,82 +6,33 @@ import CompetencyGap from "./pages/CompetencyGap";
 import Training from "./pages/Training";
 import Quizzes from "./pages/Quizzes";
 import Resources from "./pages/Resources";
-import MyProgress from "./pages/MyProgress";
-import Sidebar from "./components/Sidebar";
+import Progress from "./pages/MyProgress";
 
-function Layout() {
-  const location = useLocation();
-
-  // Login page par sidebar nahi dikhega
-  const showSidebar = location.pathname !== "/login";
-
+function App() {
   return (
-    <>
-      {showSidebar && <Sidebar />}
-
+    <BrowserRouter>
       <Routes>
-        {/* Default */}
-        <Route
-          path="/"
-          element={<Navigate to="/login" replace />}
-        />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+        <Route path="/" element={<Navigate to="/login" />} />
 
-        {/* Dashboard */}
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+        <Route path="/login" element={<Login />} />
 
-        {/* Competency Gap */}
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route
           path="/competency-gap"
           element={<CompetencyGap />}
         />
 
-        {/* Training */}
-        <Route
-          path="/training"
-          element={<Training />}
-        />
+        <Route path="/training" element={<Training />} />
 
-        {/* Learning Resources */}
-        <Route
-          path="/resources"
-          element={<Resources />}
-        />
+        <Route path="/quizzes" element={<Quizzes />} />
 
-        {/* Quizzes */}
-        <Route
-          path="/quizzes"
-          element={<Quizzes />}
-        />
+        <Route path="/resources" element={<Resources />} />
 
-        {/* My Progress */}
-        <Route
-          path="/my-progress"
-          element={<MyProgress />}
-        />
+        <Route path="/my-progress" element={<Progress />} />
 
-        {/* Invalid URL */}
-        <Route
-          path="*"
-          element={<Navigate to="/dashboard" replace />}
-        />
       </Routes>
-    </>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Layout />
     </BrowserRouter>
   );
 }
