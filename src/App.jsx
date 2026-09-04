@@ -1,3 +1,4 @@
+```jsx
 import {
   BrowserRouter,
   Routes,
@@ -10,8 +11,9 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CompetencyGap from "./pages/CompetencyGap";
 import Training from "./pages/Training";
-import Resources from "./pages/Learning resources";
 import Quizzes from "./pages/Quizzes";
+import Progress from "./pages/Progress";
+import Resources from "./pages/Resources";
 import Sidebar from "./components/Sidebar";
 
 function Layout() {
@@ -55,16 +57,22 @@ function Layout() {
           element={<Training />}
         />
 
-        {/* Learning Resources - Separate Page */}
-        <Route
-          path="/learning-resources"
-          element={<Resources />}
-        />
-
-        {/* Quizzes - Separate Page */}
+        {/* Quizzes */}
         <Route
           path="/quizzes"
           element={<Quizzes />}
+        />
+
+        {/* Progress */}
+        <Route
+          path="/progress"
+          element={<Progress />}
+        />
+
+        {/* Resources */}
+        <Route
+          path="/resources"
+          element={<Resources />}
         />
 
         {/* Invalid URL */}
@@ -86,3 +94,4 @@ function App() {
 }
 
 export default App;
+```
