@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import CompetencyGap from "./pages/CompetencyGap";
 import Training from "./pages/Training";
@@ -57,6 +58,11 @@ function App() {
           path="/login"
           element={<Login />}
         />
+
+        <Route
+           path="/register"
+           element={<Register />}
+       />
 
 
         {/* =================================================
