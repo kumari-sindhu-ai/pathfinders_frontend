@@ -249,3 +249,33 @@
     flex-direction: column;
   }
 }
+
+/* Loading / Error / Empty States */
+
+.gap-loading,
+.gap-error,
+.gap-empty {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  color: #64748b;
+}
+
+.gap-error {
+  margin-bottom: 25px;
+  color: #dc2626;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.gap-empty h3 {
+  margin: 0 0 8px;
+  color: #1e293b;
+}
+
+.gap-empty p {
+  margin: 0;
+  color: #64748b;
+}

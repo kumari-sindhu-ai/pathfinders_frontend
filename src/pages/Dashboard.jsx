@@ -1,17 +1,218 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
-function Dashboard({ sidebarOpen, setSidebarOpen }) {
+import api from "../services/api";
+
+function Dashboard() {
+  const navigate = useNavigate();
+
+  // =========================================================
+  // DASHBOARD STATE
+  // =========================================================
+
+  const [profile, setProfile] = useState(null);
+  const [competencyData, setCompetencyData] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
+  const [attempts, setAttempts] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // =========================================================
+  // LOAD DASHBOARD DATA
+  // =========================================================
+
+  useEffect(() => {
+    const loadDashboard = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        // Get all data required by the Dashboard.
+        // api.js automatically adds the JWT access token.
+        const [
+          profileResponse,
+          competencyResponse,
+          recommendationResponse,
+          attemptsResponse,
+        ] = await Promise.all([
+          api.get("/users/profile/"),
+          api.get("/competency/gaps/"),
+          api.get("/courses/recommendations/"),
+          api.get("/assessment/attempts/"),
+        ]);
+
+        // -----------------------------------------------------
+        // PROFILE
+        // -----------------------------------------------------
+
+        setProfile(profileResponse.data);
+
+        // -----------------------------------------------------
+        // COMPETENCY GAPS
+        // -----------------------------------------------------
+
+        setCompetencyData(
+          Array.isArray(competencyResponse.data?.gaps)
+            ? competencyResponse.data.gaps
+            : []
+        );
+
+        // -----------------------------------------------------
+        // COURSE RECOMMENDATIONS
+        // -----------------------------------------------------
+
+        setRecommendations(
+          Array.isArray(recommendationResponse.data)
+            ? recommendationResponse.data
+            : []
+        );
+
+        // -----------------------------------------------------
+        // ASSESSMENT ATTEMPTS
+        // -----------------------------------------------------
+
+        setAttempts(
+          Array.isArray(attemptsResponse.data)
+            ? attemptsResponse.data
+            : []
+        );
+      } catch (err) {
+        console.error("Failed to load dashboard:", err);
+
+        setError(
+          err.response?.data?.detail ||
+            "Failed to load dashboard data. Please try again."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDashboard();
+  }, []);
+
+  // =========================================================
+  // CALCULATED DASHBOARD VALUES
+  // =========================================================
+
+  // Latest quiz attempt
+  const recentQuiz = attempts.length > 0 ? attempts[0] : null;
+
+  // Average quiz score
+  const averageQuizScore =
+    attempts.length > 0
+      ? Math.round(
+          attempts.reduce(
+            (total, attempt) => total + Number(attempt.score || 0),
+            0
+          ) / attempts.length
+        )
+      : null;
+
+  // =========================================================
+  // COMPETENCY LEVEL → DISPLAY PERCENTAGE
+  // =========================================================
+  //
+  // Backend stores competency levels from 0 to 4.
+  //
+  // 0 → 0%
+  // 1 → 25%
+  // 2 → 50%
+  // 3 → 75%
+  // 4 → 100%
+  //
+  // This is only for visual display.
+  // =========================================================
+
+  const getCompetencyPercentage = (currentLevel) => {
+    const level = Number(currentLevel || 0);
+
+    return Math.min(Math.max(level * 25, 0), 100);
+  };
+
+  // =========================================================
+  // GET CSS CLASS FOR COMPETENCY PROGRESS
+  // =========================================================
+
+  const getProgressClass = (percentage) => {
+    if (percentage < 50) {
+      return "danger";
+    }
+
+    if (percentage < 70) {
+      return "warning";
+    }
+
+    if (percentage < 85) {
+      return "success";
+    }
+
+    return "primary";
+  };
+
+  // =========================================================
+  // LOADING STATE
+  // =========================================================
+
+  if (loading) {
+    return (
+      <div className="dashboard">
+        <main className="main-content">
+          <div className="dashboard-card">
+            <h2>Loading Dashboard...</h2>
+            <p>Fetching your learning information.</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // =========================================================
+  // ERROR STATE
+  // =========================================================
+
+  if (error) {
+    return (
+      <div className="dashboard">
+        <main className="main-content">
+          <div className="dashboard-card">
+            <h2>Unable to load Dashboard</h2>
+
+            <p>{error}</p>
+
+            <button
+              className="full-btn"
+              onClick={() => window.location.reload()}
+            >
+              Try Again
+            </button>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // =========================================================
+  // USER DISPLAY DATA
+  // =========================================================
+
+  const username = profile?.username || "Learner";
+
+  // =========================================================
+  // DASHBOARD UI
+  // =========================================================
+
   return (
     <div className="dashboard">
 
-      <main
-        className={`main-content ${
-          sidebarOpen ? "sidebar-open" : "sidebar-closed"
-        }`}
-      >
+      <main className="main-content">
 
-        {/* HEADER */}
+        {/* =====================================================
+            WELCOME SECTION
+            ===================================================== */}
+
         <header className="top-header">
 
           <div className="welcome-section">
@@ -21,7 +222,7 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
             </p>
 
             <h1>
-              Welcome back, Sindhu! 👋
+              Welcome back, {username}! 👋
             </h1>
 
             <p className="header-text">
@@ -30,94 +231,137 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
 
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="profile">
-
-            <div className="notification">
-              🔔
-            </div>
-
-            <div className="avatar">
-              S
-            </div>
-
-            <div className="profile-info">
-              <strong>Sindhu</strong>
-              <small>Learner</small>
-            </div>
-
-            {/* THREE DOT */}
-            <button
-              className="three-dot"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              title={sidebarOpen ? "Close Sidebar" : "Open Sidebar"}
-            >
-              ⋮
-            </button>
-
-          </div>
-
         </header>
 
 
-        {/* STATS */}
+        {/* =====================================================
+            STATS
+            ===================================================== */}
+
         <section className="stats-grid">
 
+          {/* COURSES COMPLETED */}
+
           <div className="stat-card">
-            <div className="stat-icon">📚</div>
+
+            <div className="stat-icon">
+              📚
+            </div>
 
             <div>
-              <h2>12</h2>
-              <p>Courses Completed</p>
-              <small>+2 this month</small>
+              <h2>—</h2>
+
+              <p>
+                Courses Completed
+              </p>
+
+              <small>
+                Progress tracking available soon
+              </small>
             </div>
+
           </div>
 
 
+          {/* OVERALL PROGRESS */}
+
           <div className="stat-card">
-            <div className="stat-icon">🎯</div>
+
+            <div className="stat-icon">
+              🎯
+            </div>
 
             <div>
-              <h2>78%</h2>
-              <p>Overall Progress</p>
-              <small>+8% this week</small>
+              <h2>—</h2>
+
+              <p>
+                Overall Progress
+              </p>
+
+              <small>
+                Not available from current API
+              </small>
             </div>
+
           </div>
 
 
+          {/* AVERAGE QUIZ SCORE */}
+
           <div className="stat-card">
-            <div className="stat-icon">📝</div>
+
+            <div className="stat-icon">
+              📝
+            </div>
 
             <div>
-              <h2>86%</h2>
-              <p>Average Quiz Score</p>
-              <small>Excellent performance</small>
+
+              <h2>
+                {averageQuizScore !== null
+                  ? `${averageQuizScore}%`
+                  : "—"}
+              </h2>
+
+              <p>
+                Average Quiz Score
+              </p>
+
+              <small>
+                {attempts.length > 0
+                  ? `${attempts.length} assessment${
+                      attempts.length === 1 ? "" : "s"
+                    } completed`
+                  : "No assessments completed yet"}
+              </small>
+
             </div>
+
           </div>
 
 
+          {/* LEARNING STREAK */}
+
           <div className="stat-card">
-            <div className="stat-icon">🔥</div>
+
+            <div className="stat-icon">
+              🔥
+            </div>
 
             <div>
-              <h2>7 Days</h2>
-              <p>Learning Streak</p>
-              <small>Keep it going!</small>
+
+              <h2>—</h2>
+
+              <p>
+                Learning Streak
+              </p>
+
+              <small>
+                Not available from current API
+              </small>
+
             </div>
+
           </div>
 
         </section>
 
 
-        {/* COMPETENCY + AI */}
+        {/* =====================================================
+            COMPETENCY + AI RECOMMENDATIONS
+            ===================================================== */}
+
         <section className="main-grid">
 
-          {/* COMPETENCY GAP */}
+          {/* =================================================
+              COMPETENCY GAP ANALYSIS
+              ================================================= */}
+
           <div className="dashboard-card">
 
             <div className="card-header">
 
               <div>
+
                 <span className="card-label">
                   AI ANALYSIS
                 </span>
@@ -125,90 +369,106 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
                 <h2>
                   Competency Gap Analysis
                 </h2>
+
               </div>
 
-              <button className="view-btn">
+              <button
+                className="view-btn"
+                onClick={() => navigate("/competency-gap")}
+              >
                 View All →
               </button>
 
             </div>
 
+
             <p className="card-description">
               AI has identified the following areas that need improvement.
             </p>
 
+
             <div className="skills">
 
-              <div className="skill">
-                <div className="skill-top">
-                  <span>Data Analysis</span>
-                  <strong>45%</strong>
-                </div>
+              {competencyData.length === 0 ? (
 
-                <div className="progress-track">
-                  <div
-                    className="progress-fill danger"
-                    style={{ width: "45%" }}
-                  ></div>
-                </div>
-              </div>
+                <p>
+                  No competency data available yet.
+                </p>
 
+              ) : (
 
-              <div className="skill">
-                <div className="skill-top">
-                  <span>Statistical Methods</span>
-                  <strong>60%</strong>
-                </div>
+                competencyData
+                  .slice(0, 4)
+                  .map((item, index) => {
 
-                <div className="progress-track">
-                  <div
-                    className="progress-fill warning"
-                    style={{ width: "60%" }}
-                  ></div>
-                </div>
-              </div>
+                    const percentage =
+                      getCompetencyPercentage(
+                        item.current_level
+                      );
 
+                    const progressClass =
+                      getProgressClass(percentage);
 
-              <div className="skill">
-                <div className="skill-top">
-                  <span>Data Visualization</span>
-                  <strong>72%</strong>
-                </div>
+                    return (
+                      <div
+                        className="skill"
+                        key={`${item.competency}-${index}`}
+                      >
 
-                <div className="progress-track">
-                  <div
-                    className="progress-fill success"
-                    style={{ width: "72%" }}
-                  ></div>
-                </div>
-              </div>
+                        <div className="skill-top">
+
+                          <span>
+                            {item.competency}
+                          </span>
+
+                          <strong>
+                            {percentage}%
+                          </strong>
+
+                        </div>
 
 
-              <div className="skill">
-                <div className="skill-top">
-                  <span>Python</span>
-                  <strong>85%</strong>
-                </div>
+                        <div className="progress-track">
 
-                <div className="progress-track">
-                  <div
-                    className="progress-fill primary"
-                    style={{ width: "85%" }}
-                  ></div>
-                </div>
-              </div>
+                          <div
+                            className={`progress-fill ${progressClass}`}
+                            style={{
+                              width: `${percentage}%`,
+                            }}
+                          ></div>
+
+                        </div>
+
+
+                        <small>
+                          Current level:{" "}
+                          {item.current_level ?? 0}
+                          {" / "}
+                          Required level:{" "}
+                          {item.required_level ?? 0}
+                        </small>
+
+                      </div>
+                    );
+                  })
+
+              )}
 
             </div>
 
           </div>
 
 
-          {/* AI RECOMMENDATIONS */}
+          {/* =================================================
+              AI RECOMMENDATIONS
+              ================================================= */}
+
           <div className="dashboard-card">
 
             <div className="card-header">
 
               <div>
+
                 <span className="card-label">
                   PERSONALIZED FOR YOU
                 </span>
@@ -216,70 +476,92 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
                 <h2>
                   🤖 AI Recommendations
                 </h2>
+
               </div>
 
             </div>
 
 
-            <div className="recommendation">
+            {recommendations.length === 0 ? (
 
-              <div className="recommend-icon">
-                📊
-              </div>
+              <p>
+                No course recommendations available yet.
+              </p>
 
-              <div>
-                <h3>
-                  Data Analysis Fundamentals
-                </h3>
+            ) : (
 
-                <p>
-                  Recommended based on your competency gap.
-                </p>
+              recommendations
+                .slice(0, 2)
+                .map((recommendation, index) => (
 
-                <button className="start-btn">
-                  Start Learning →
-                </button>
-              </div>
+                  <div
+                    className="recommendation"
+                    key={
+                      recommendation.course_id ||
+                      index
+                    }
+                  >
 
-            </div>
+                    <div className="recommend-icon">
+                      {index === 0 ? "📊" : "📈"}
+                    </div>
 
 
-            <div className="recommendation">
+                    <div>
 
-              <div className="recommend-icon">
-                📈
-              </div>
+                      <h3>
+                        {recommendation.course ||
+                          "Recommended Course"}
+                      </h3>
 
-              <div>
-                <h3>
-                  Statistical Methods
-                </h3>
 
-                <p>
-                  Improve your statistical knowledge.
-                </p>
+                      <p>
+                        {recommendation.reason ||
+                          `Recommended based on your competency gap in ${
+                            recommendation.competency ||
+                            "this area"
+                          }.`}
+                      </p>
 
-                <button className="start-btn">
-                  Start Learning →
-                </button>
-              </div>
 
-            </div>
+                      <button
+                        className="start-btn"
+                        onClick={() => {
+                          navigate("/training");
+                        }}
+                      >
+                        Start Learning →
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                ))
+
+            )}
 
           </div>
 
         </section>
 
 
-        {/* BOTTOM */}
+        {/* =====================================================
+            BOTTOM SECTION
+            ===================================================== */}
+
         <section className="bottom-grid">
 
-          {/* RECENT QUIZ */}
+          {/* =================================================
+              RECENT QUIZ
+              ================================================= */}
+
           <div className="dashboard-card">
 
             <div className="card-header">
 
               <div>
+
                 <span className="card-label">
                   LATEST ACTIVITY
                 </span>
@@ -287,53 +569,103 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
                 <h2>
                   📝 Recent Quiz
                 </h2>
+
               </div>
 
             </div>
 
 
-            <div className="quiz-content">
+            {recentQuiz ? (
 
-              <div className="quiz-icon">
-                📊
+              <div className="quiz-content">
+
+                <div className="quiz-icon">
+                  📊
+                </div>
+
+
+                <div className="quiz-info">
+
+                  <h3>
+                    {recentQuiz.assessment_title ||
+                      "Assessment"}
+                  </h3>
+
+                  <p>
+                    Completed{" "}
+                    {recentQuiz.completed_at
+                      ? new Date(
+                          recentQuiz.completed_at
+                        ).toLocaleDateString()
+                      : "recently"}
+                  </p>
+
+                </div>
+
+
+                <div className="quiz-score">
+
+                  <strong>
+                    {Number(
+                      recentQuiz.score || 0
+                    )}
+                    %
+                  </strong>
+
+                  <span>
+                    Score
+                  </span>
+
+                </div>
+
               </div>
 
-              <div className="quiz-info">
-                <h3>
-                  Statistical Methods
-                </h3>
+            ) : (
 
-                <p>
-                  20 Questions • Completed today
-                </p>
+              <div className="quiz-content">
+
+                <div className="quiz-icon">
+                  📝
+                </div>
+
+                <div className="quiz-info">
+
+                  <h3>
+                    No quizzes completed yet
+                  </h3>
+
+                  <p>
+                    Complete an assessment to see
+                    your latest result here.
+                  </p>
+
+                </div>
+
               </div>
 
-              <div className="quiz-score">
-                <strong>
-                  86%
-                </strong>
-
-                <span>
-                  Score
-                </span>
-              </div>
-
-            </div>
+            )}
 
 
-            <button className="full-btn">
+            <button
+              className="full-btn"
+              onClick={() => navigate("/quizzes")}
+            >
               Take New Quiz
             </button>
 
           </div>
 
 
-          {/* LEARNING PROGRESS */}
+          {/* =================================================
+              LEARNING PROGRESS
+              ================================================= */}
+
           <div className="dashboard-card">
 
             <div className="card-header">
 
               <div>
+
                 <span className="card-label">
                   YOUR JOURNEY
                 </span>
@@ -341,6 +673,7 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
                 <h2>
                   📈 Learning Progress
                 </h2>
+
               </div>
 
             </div>
@@ -349,20 +682,26 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
             <div className="learning-progress">
 
               <div className="progress-number">
-                78%
+                —
               </div>
+
 
               <div>
 
                 <h3>
-                  Great progress! 🎉
+                  Keep learning! 🎯
                 </h3>
 
                 <p>
-                  Keep learning to reach your target competency level.
+                  Overall learning progress is not
+                  currently provided by the backend.
                 </p>
 
-                <button className="continue-btn">
+
+                <button
+                  className="continue-btn"
+                  onClick={() => navigate("/training")}
+                >
                   Continue Learning →
                 </button>
 
@@ -375,12 +714,16 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
         </section>
 
 
-        {/* UPLOAD */}
+        {/* =====================================================
+            UPLOAD LEARNING MATERIAL
+            ===================================================== */}
+
         <section className="upload-section">
 
           <div className="upload-icon">
             📄
           </div>
+
 
           <div>
 
@@ -393,13 +736,22 @@ function Dashboard({ sidebarOpen, setSidebarOpen }) {
             </h2>
 
             <p>
-              Upload PDF, PPT or DOC files and let AI generate
-              quizzes and identify competency gaps.
+              Upload PDF, PPT or DOC files and let AI
+              generate quizzes and identify competency
+              gaps.
             </p>
 
           </div>
 
-          <button className="upload-btn">
+
+          <button
+            className="upload-btn"
+            onClick={() => {
+              alert(
+                "Learning material upload will be connected later."
+              );
+            }}
+          >
             + Upload Material
           </button>
 

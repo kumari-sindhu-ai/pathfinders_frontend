@@ -1,19 +1,47 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import api from "../services/api";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    alert("Login successful!");
-    navigate("/dashboard");
+    setError("");
+    setLoading(true);
+
+    try {
+      // Send login request to Django
+      const response = await api.post("/auth/login/", {
+        username: username,
+        password: password,
+      });
+
+      // Save JWT tokens
+      localStorage.setItem("access_token", response.data.access);
+      localStorage.setItem("refresh_token", response.data.refresh);
+
+      // Login successful
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login failed:", err);
+
+      setError(
+        err.response?.data?.detail ||
+          "Invalid username or password."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -84,7 +112,6 @@ function Login() {
 
       </div>
 
-
       {/* Right Section */}
       <div className="login-right">
 
@@ -100,28 +127,33 @@ function Login() {
             Login to your account and continue your learning journey
           </p>
 
+          {/* Error Message */}
+          {error && (
+            <div className="login-error">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit}>
 
-            {/* Email */}
+            {/* Username */}
             <div className="input-group">
 
-              <label>Email</label>
+              <label>Username</label>
 
               <div className="input-wrapper">
-                <span className="input-icon">✉️</span>
+                <span className="input-icon">👤</span>
 
                 <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </div>
 
             </div>
-
 
             {/* Password */}
             <div className="input-group">
@@ -151,7 +183,6 @@ function Login() {
 
             </div>
 
-
             {/* Options */}
             <div className="login-options">
 
@@ -163,22 +194,26 @@ function Login() {
               <button
                 type="button"
                 className="forgot-btn"
-                onClick={() => alert("Password reset feature coming soon!")}
+                onClick={() =>
+                  alert("Password reset feature coming soon!")
+                }
               >
                 Forgot Password?
               </button>
 
             </div>
 
-
             {/* Login Button */}
-            <button type="submit" className="login-btn">
-              Login
-              <span>→</span>
+            <button
+              type="submit"
+              className="login-btn"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
+              {!loading && <span>→</span>}
             </button>
 
           </form>
-
 
           {/* Divider */}
           <div className="divider">
@@ -190,6 +225,7 @@ function Login() {
           {/* Signup */}
           <p className="signup-text">
             Don't have an account?
+
             <button
               type="button"
               onClick={() => alert("Sign Up page coming soon!")}

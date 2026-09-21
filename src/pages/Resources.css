@@ -46,3 +46,57 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Resource Status */
+
+.resource-status {
+  margin-top: 20px;
+  padding: 25px;
+  text-align: center;
+  color: #6b7280;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.resource-error {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+
+/* Buttons */
+
+.view-btn,
+.start-btn {
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.view-btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #4338ca;
+}
+
+.start-btn {
+  padding: 8px 14px;
+  border-radius: 7px;
+  background: #4f46e5;
+  color: white;
+  font-size: 13px;
+}
+
+.start-btn:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.start-btn:disabled {
+  background: #c7d2fe;
+  cursor: not-allowed;
+}
