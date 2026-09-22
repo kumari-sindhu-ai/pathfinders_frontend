@@ -121,7 +121,7 @@ function Login() {
             🔐
           </div>
 
-          <h1>Welcome Back! 👋</h1>
+          <h1>Welcome Back! </h1>
 
           <p className="login-subtitle">
             Login to your account and continue your learning journey

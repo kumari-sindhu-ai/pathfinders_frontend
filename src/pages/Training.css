@@ -1,74 +1,104 @@
 /* =========================================================
-   TRAINING PAGE
-   ========================================================= */
+   LEARNAI — TRAINING PAGE
+   Professional Enterprise Dashboard Theme
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
 
 .training-page {
   width: 100%;
   min-height: 100vh;
+
   margin: 0;
-  padding: 40px 5%;
-  box-sizing: border-box;
-  background: #f7f8fc;
+  padding: 30px 34px;
+
+  background: #f5f6f8;
+  color: #172033;
 }
 
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .training-header {
   width: 100%;
   max-width: 1500px;
-  margin: 0 auto 35px;
+
+  margin: 0 auto 26px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+
+  gap: 20px;
 }
 
 .training-header h1 {
   margin: 0;
-  color: #1f2937;
-  font-size: 34px;
+
+  color: #172033;
+
+  font-size: 28px;
+  line-height: 1.2;
   font-weight: 700;
-  letter-spacing: -0.5px;
+
+  letter-spacing: -0.4px;
 }
 
 .training-header p {
-  margin: 8px 0 0;
-  color: #737887;
-  font-size: 15px;
+  margin: 7px 0 0;
+
+  color: #7b8494;
+
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 
 /* =========================================================
    BUTTONS
-   ========================================================= */
+========================================================= */
 
 .browse-btn,
 .continue-btn,
 .recommendation button {
   border: none;
-  background: #6c63ff;
-  color: white;
-  border-radius: 9px;
+  border-radius: 6px;
+
+  background: #5b5cf6;
+  color: #ffffff;
+
   cursor: pointer;
+
   font-weight: 600;
-  transition: all 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .browse-btn {
-  padding: 13px 22px;
-  font-size: 14px;
+  padding: 10px 15px;
+
+  font-size: 11px;
+
   white-space: nowrap;
 }
 
 .browse-btn:hover,
 .continue-btn:hover,
 .recommendation button:hover {
-  background: #574ff0;
-  transform: translateY(-2px);
+  background: #4f50e8;
+
+  transform: translateY(-1px);
 }
 
 .browse-btn:active,
@@ -80,13 +110,14 @@
 
 /* =========================================================
    MAIN CONTENT WIDTH
-   ========================================================= */
+========================================================= */
 
 .training-stats,
 .courses-section,
 .recommended-training {
   width: 100%;
   max-width: 1500px;
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -94,91 +125,122 @@
 
 /* =========================================================
    TRAINING STATS
-   ========================================================= */
+========================================================= */
 
 .training-stats {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: 40px;
+
+  gap: 16px;
+
+  margin-bottom: 22px;
 }
 
 .training-stat-card {
-  background: #ffffff;
-  padding: 23px;
-  border-radius: 15px;
+  min-height: 108px;
+
+  padding: 17px;
 
   display: flex;
   align-items: center;
-  gap: 17px;
 
-  border: 1px solid #eeeeF4;
-  box-shadow: 0 4px 15px rgba(30, 35, 50, 0.05);
+  gap: 13px;
 
-  transition: all 0.2s ease;
+  background: #ffffff;
+
+  border: 1px solid #e2e5ea;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .training-stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 9px 25px rgba(30, 35, 50, 0.09);
+  transform: translateY(-2px);
+
+  border-color: #d5d8e1;
+
+  box-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
 }
 
 .training-stat-card > span {
-  width: 55px;
-  height: 55px;
+  width: 43px;
+  height: 43px;
+
   flex-shrink: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #eeeaff;
-  border-radius: 13px;
+  background: #eef0ff;
 
-  font-size: 27px;
+  border-radius: 9px;
+
+  color: #5b5cf6;
+
+  font-size: 19px;
 }
 
 .training-stat-card h3 {
   margin: 0;
-  color: #20242d;
-  font-size: 26px;
+
+  color: #172033;
+
+  font-size: 22px;
+  line-height: 1.1;
   font-weight: 700;
 }
 
 .training-stat-card p {
   margin: 5px 0 0;
-  color: #777d89;
-  font-size: 13px;
+
+  color: #7b8494;
+
+  font-size: 10px;
 }
 
 
 /* =========================================================
    COURSE SECTION
-   ========================================================= */
+========================================================= */
 
 .courses-section {
-  margin-bottom: 40px;
+  margin-bottom: 22px;
 }
 
 .section-title {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .section-title h2 {
   margin: 0;
-  color: #20242d;
-  font-size: 22px;
+
+  color: #172033;
+
+  font-size: 18px;
+  line-height: 1.3;
   font-weight: 700;
+
+  letter-spacing: -0.2px;
 }
 
 .section-title span {
-  color: #6c63ff;
-  font-size: 14px;
+  color: #5b5cf6;
+
+  font-size: 11px;
   font-weight: 600;
+
   cursor: pointer;
 }
 
@@ -189,62 +251,79 @@
 
 /* =========================================================
    COURSE GRID
-   ========================================================= */
+========================================================= */
 
 .course-grid {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+
+  gap: 16px;
 }
 
 
 /* =========================================================
    COURSE CARD
-   ========================================================= */
+========================================================= */
 
 .course-card {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 15px;
+  min-width: 0;
+
+  padding: 18px;
 
   display: flex;
-  gap: 20px;
 
-  border: 1px solid #eeeeF4;
-  box-shadow: 0 4px 15px rgba(30, 35, 50, 0.05);
+  gap: 14px;
 
-  transition: all 0.2s ease;
+  background: #ffffff;
+
+  border: 1px solid #e2e5ea;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .course-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(30, 35, 50, 0.09);
+  transform: translateY(-2px);
+
+  border-color: #d5d8e1;
+
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
 
 /* =========================================================
    COURSE ICON
-   ========================================================= */
+========================================================= */
 
 .course-icon {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
+  width: 48px;
+  height: 48px;
+
+  min-width: 48px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #eeeaff;
-  border-radius: 13px;
+  background: #eef0ff;
 
-  font-size: 27px;
+  border-radius: 9px;
+
+  color: #5b5cf6;
+
+  font-size: 20px;
 }
 
 
 /* =========================================================
    COURSE INFORMATION
-   ========================================================= */
+========================================================= */
 
 .course-info {
   flex: 1;
@@ -254,90 +333,99 @@
 .course-category {
   display: inline-block;
 
-  padding: 5px 10px;
+  padding: 4px 8px;
 
-  background: #f0edff;
-  color: #6c63ff;
+  background: #eef0ff;
 
-  border-radius: 6px;
+  color: #5b5cf6;
 
-  font-size: 11px;
+  border: 1px solid #e0e2ff;
+
+  border-radius: 5px;
+
+  font-size: 9px;
   font-weight: 700;
 
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+
+  letter-spacing: 0.5px;
 }
 
 .course-info h3 {
-  margin: 10px 0 13px;
+  margin: 8px 0 10px;
 
-  color: #20242d;
+  color: #202939;
 
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 15px;
   line-height: 1.35;
+  font-weight: 600;
 }
 
 
 /* =========================================================
    COURSE DETAILS
-   ========================================================= */
+========================================================= */
 
 .course-details {
   display: flex;
   align-items: center;
-  gap: 20px;
 
-  color: #777d89;
+  gap: 16px;
 
-  font-size: 13px;
+  color: #7b8494;
+
+  font-size: 10px;
 }
 
 .course-details span {
   display: flex;
   align-items: center;
+
   gap: 5px;
 }
 
 
 /* =========================================================
    PROGRESS
-   ========================================================= */
+========================================================= */
 
 .progress-info {
   display: flex;
+
   justify-content: space-between;
 
-  margin-top: 20px;
+  margin-top: 16px;
 
-  font-size: 13px;
+  font-size: 10px;
 }
 
 .progress-info span:first-child {
-  color: #777d89;
+  color: #7b8494;
 }
 
 .progress-info span:last-child {
-  color: #333842;
+  color: #303848;
+
   font-weight: 600;
 }
 
 .progress-bar {
   width: 100%;
-  height: 8px;
+  height: 6px;
 
-  margin: 8px 0 16px;
+  margin: 7px 0 13px;
 
-  background: #e7e8ed;
+  background: #eceef3;
 
   border-radius: 20px;
+
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
 
-  background: #6c63ff;
+  background: #5b5cf6;
 
   border-radius: 20px;
 
@@ -347,97 +435,100 @@
 
 /* =========================================================
    CONTINUE LEARNING
-   ========================================================= */
+========================================================= */
 
 .continue-btn {
   width: 100%;
 
-  padding: 12px 16px;
+  padding: 9px 13px;
 
-  font-size: 13px;
+  font-size: 10px;
 }
 
 
 /* =========================================================
    AI RECOMMENDED TRAINING
-   ========================================================= */
+========================================================= */
 
 .recommended-training {
+  padding: 20px;
+
   background: #ffffff;
 
-  padding: 28px;
+  border: 1px solid #e2e5ea;
+  border-radius: 10px;
 
-  border-radius: 15px;
-
-  border: 1px solid #eeeeF4;
-
-  box-shadow: 0 4px 15px rgba(30, 35, 50, 0.05);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
 }
 
 .recommended-training h2 {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
 
-  color: #20242d;
+  color: #172033;
 
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1.3;
   font-weight: 700;
+
+  letter-spacing: -0.2px;
 }
 
 
 /* =========================================================
    RECOMMENDATION
-   ========================================================= */
+========================================================= */
 
 .recommendation {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 
-  gap: 25px;
+  gap: 20px;
 
-  padding: 23px;
+  padding: 17px;
 
-  background: #f5f3ff;
+  background: #f5f6ff;
 
-  border: 1px solid #e8e4ff;
+  border: 1px solid #dfe2ff;
 
-  border-radius: 12px;
+  border-radius: 9px;
 }
 
 .recommendation h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 
-  color: #272a33;
+  color: #202939;
 
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .recommendation p {
-  margin: 5px 0;
+  margin: 4px 0;
 
-  color: #737887;
+  color: #737c8d;
 
-  font-size: 13px;
+  font-size: 10px;
   line-height: 1.5;
 }
 
 .recommendation button {
-  padding: 12px 20px;
+  padding: 9px 14px;
 
-  font-size: 13px;
+  font-size: 10px;
 
   white-space: nowrap;
 }
 
 
 /* =========================================================
-   RESPONSIVE — TABLET
-   ========================================================= */
+   LAPTOP
+========================================================= */
 
-@media (max-width: 1000px) {
-
+@media (max-width: 1100px) {
   .training-page {
-    padding: 35px 30px;
+    padding: 27px 28px;
   }
 
   .training-stats {
@@ -451,22 +542,55 @@
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+  .training-page {
+    padding: 22px 20px;
+  }
+
+  .training-header h1 {
+    font-size: 25px;
+  }
+
+  .training-header p {
+    font-size: 12px;
+  }
+
+  .training-stats {
+    gap: 12px;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommended-training {
+    padding: 18px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
-
   .training-page {
-    padding: 25px 18px;
+    padding: 18px 15px;
   }
 
   .training-header {
     flex-direction: column;
+
     align-items: flex-start;
+
+    margin-bottom: 21px;
   }
 
   .training-header h1 {
-    font-size: 29px;
+    font-size: 23px;
   }
 
   .browse-btn {
@@ -483,6 +607,7 @@
 
   .recommendation {
     flex-direction: column;
+
     align-items: flex-start;
   }
 
@@ -494,37 +619,41 @@
 
 /* =========================================================
    SMALL MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 450px) {
-
   .training-page {
-    padding: 20px 14px;
+    padding: 15px 12px;
   }
 
   .course-card {
-    padding: 19px;
-    gap: 14px;
+    padding: 15px;
+
+    gap: 12px;
   }
 
   .course-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    font-size: 22px;
+    width: 44px;
+    height: 44px;
+
+    min-width: 44px;
+
+    font-size: 18px;
   }
 
   .course-info h3 {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .course-details {
     flex-direction: column;
+
     align-items: flex-start;
-    gap: 6px;
+
+    gap: 5px;
   }
 
   .recommended-training {
-    padding: 20px;
+    padding: 16px;
   }
 }

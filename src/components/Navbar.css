@@ -1,28 +1,30 @@
 /* =========================================================
-   PATHFINDERS / LEARNAI NAVBAR
+   LEARNAI NAVBAR
+   Professional Enterprise Dashboard Theme
 ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
 
 .navbar {
   position: sticky;
   top: 0;
 
-  height: 72px;
-
-  box-sizing: border-box;
-
-  background: rgba(255, 255, 255, 0.96);
-
-  border-bottom: 1px solid #e8eaf0;
+  width: 100%;
+  height: 64px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 32px;
+  padding: 0 28px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e2e5ea;
 
   z-index: 900;
-
-  backdrop-filter: blur(10px);
 }
 
 
@@ -40,15 +42,16 @@
 .navbar-title-wrapper {
   display: flex;
   flex-direction: column;
+
   gap: 2px;
 }
 
 .navbar-title-wrapper h1 {
   margin: 0;
 
-  color: #1e293b;
+  color: #172033;
 
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.2;
 
   font-weight: 700;
@@ -59,9 +62,9 @@
 .navbar-title-wrapper p {
   margin: 0;
 
-  color: #8a91a3;
+  color: #7b8494;
 
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.3;
 }
 
@@ -74,6 +77,18 @@
   display: none;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #5b5cf6;
+
+  color: #ffffff;
+
+  border-radius: 8px;
+}
+
 
 /* =========================================================
    RIGHT ACTIONS
@@ -83,7 +98,7 @@
   display: flex;
   align-items: center;
 
-  gap: 14px;
+  gap: 10px;
 }
 
 
@@ -92,23 +107,21 @@
 ========================================================= */
 
 .navbar-search {
-  width: 220px;
-  height: 40px;
-
-  box-sizing: border-box;
+  width: 210px;
+  height: 38px;
 
   display: flex;
   align-items: center;
 
   gap: 8px;
 
-  padding: 0 12px;
+  padding: 0 11px;
 
-  background: #f7f8fc;
+  background: #f7f8fa;
 
-  border: 1px solid #eceef4;
+  border: 1px solid #e2e5ea;
 
-  border-radius: 10px;
+  border-radius: 7px;
 
   transition:
     border-color 0.2s ease,
@@ -119,16 +132,15 @@
 .navbar-search:focus-within {
   background: #ffffff;
 
-  border-color: #a5b4fc;
+  border-color: #bfc2f5;
 
-  box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 0 0 3px rgba(91, 92, 246, 0.07);
 }
 
 .search-icon {
-  color: #8b93a5;
+  color: #8a92a2;
 
-  font-size: 20px;
+  font-size: 17px;
 
   line-height: 1;
 }
@@ -141,15 +153,15 @@
 
   background: transparent;
 
-  color: #334155;
+  color: #303848;
 
   font-family: inherit;
 
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .navbar-search input::placeholder {
-  color: #9ca3af;
+  color: #9aa1ae;
 }
 
 
@@ -160,20 +172,22 @@
 .navbar-icon-button {
   position: relative;
 
-  width: 40px;
-  height: 40px;
-
-  border: 1px solid #eceef4;
-
-  border-radius: 10px;
-
-  background: #ffffff;
+  width: 38px;
+  height: 38px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 16px;
+  border: 1px solid #e2e5ea;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #5f6878;
+
+  font-size: 15px;
 
   cursor: pointer;
 
@@ -184,26 +198,28 @@
 }
 
 .navbar-icon-button:hover {
-  background: #f5f5ff;
+  background: #f7f8ff;
 
-  border-color: #dfe2f5;
+  border-color: #d5d8ee;
 
   transform: translateY(-1px);
 }
 
 
-/* Notification indicator */
+/* =========================================================
+   NOTIFICATION INDICATOR
+========================================================= */
 
 .notification-dot {
   position: absolute;
 
-  top: 8px;
-  right: 8px;
+  top: 7px;
+  right: 7px;
 
   width: 6px;
   height: 6px;
 
-  background: #6366f1;
+  background: #5b5cf6;
 
   border: 2px solid #ffffff;
 
@@ -217,11 +233,11 @@
 
 .navbar-divider {
   width: 1px;
-  height: 30px;
+  height: 27px;
 
-  background: #e8eaf0;
+  background: #e2e5ea;
 
-  margin: 0 2px;
+  margin: 0 3px;
 }
 
 
@@ -230,59 +246,60 @@
 ========================================================= */
 
 .navbar-profile {
-  border: none;
-
-  background: transparent;
-
-  padding: 4px 2px;
+  padding: 3px 5px;
 
   display: flex;
   align-items: center;
 
   gap: 9px;
 
-  cursor: pointer;
+  border: none;
 
-  border-radius: 10px;
+  background: transparent;
+
+  border-radius: 7px;
 
   font-family: inherit;
+
+  cursor: pointer;
 
   transition: background-color 0.2s ease;
 }
 
 .navbar-profile:hover {
-  background: #f7f8fc;
+  background: #f7f8fa;
 }
 
 
-/* Avatar */
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
 
 .profile-avatar {
-  width: 38px;
-  height: 38px;
-
-  border-radius: 11px;
-
-  background: linear-gradient(
-    135deg,
-    #6366f1,
-    #7c3aed
-  );
-
-  color: #ffffff;
+  width: 36px;
+  height: 36px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 16px;
+  border-radius: 8px;
 
-  box-shadow:
-    0 4px 10px rgba(99, 102, 241, 0.18);
+  background: #5b5cf6;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  box-shadow: 0 4px 10px rgba(91, 92, 246, 0.16);
 }
 
 
-/* Profile text */
+/* =========================================================
+   PROFILE INFORMATION
+========================================================= */
 
 .profile-info {
   display: flex;
@@ -294,28 +311,30 @@
 }
 
 .profile-info strong {
-  color: #334155;
+  color: #202939;
 
-  font-size: 12px;
+  font-size: 11px;
 
   font-weight: 600;
 }
 
 .profile-info span {
-  color: #9aa1b1;
+  color: #8a92a2;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 
-/* Arrow */
+/* =========================================================
+   PROFILE ARROW
+========================================================= */
 
 .profile-arrow {
   margin-left: 2px;
 
-  color: #8b93a5;
+  color: #7b8494;
 
-  font-size: 15px;
+  font-size: 13px;
 }
 
 
@@ -326,7 +345,7 @@
 @media (max-width: 1000px) {
 
   .navbar {
-    padding: 0 24px;
+    padding: 0 22px;
   }
 
   .navbar-search {
@@ -343,7 +362,7 @@
 @media (max-width: 768px) {
 
   .navbar {
-    height: 64px;
+    height: 60px;
 
     padding: 0 16px;
   }
@@ -360,35 +379,22 @@
   }
 
   .navbar-logo {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
 
-    border-radius: 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(
-      135deg,
-      #6366f1,
-      #7c3aed
-    );
-
-    color: #ffffff;
-
-    font-size: 17px;
+    font-size: 15px;
   }
 
   .navbar-mobile-brand span {
-    color: #1e293b;
+    color: #172033;
 
-    font-size: 16px;
+    font-size: 15px;
+
     font-weight: 700;
   }
 
   .navbar-actions {
-    gap: 8px;
+    gap: 7px;
   }
 
   .navbar-search {
@@ -418,13 +424,13 @@
   }
 
   .navbar-icon-button {
-    width: 36px;
-    height: 36px;
+    width: 35px;
+    height: 35px;
   }
 
   .profile-avatar {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
 
 }

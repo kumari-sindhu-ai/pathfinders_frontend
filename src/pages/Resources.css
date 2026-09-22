@@ -1,102 +1,396 @@
-.learning-resources {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+/* =========================================================
+   LEARNAI — LEARNING RESOURCES
+   Professional Enterprise Dashboard Theme
+========================================================= */
+
+* {
+  box-sizing: border-box;
 }
+
+
+/* =========================================================
+   MAIN RESOURCE CONTAINER
+========================================================= */
+
+.learning-resources {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 34px;
+  background: #f5f6f8;
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   RESOURCE HEADER
+========================================================= */
+
+.learning-resources > h1 {
+  margin: 0 0 7px;
+  color: #172033;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.learning-resources > p {
+  margin: 0;
+  color: #7b8494;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESOURCE SECTION
+========================================================= */
 
 .resources-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  margin-top: 20px;
+
+  margin-top: 25px;
 }
 
+
+/* =========================================================
+   RESOURCE CARD
+========================================================= */
+
 .resource-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 18px;
+  min-width: 0;
+
   display: flex;
+  align-items: flex-start;
   gap: 14px;
-  transition: 0.3s;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e5ea;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .resource-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+
+  border-color: #d5d8e1;
+
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
+
+/* =========================================================
+   RESOURCE ICON
+========================================================= */
+
 .resource-icon {
-  font-size: 30px;
+  width: 46px;
+  height: 46px;
+
+  min-width: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef0ff;
+
+  border: 1px solid #dfe2ff;
+  border-radius: 9px;
+
+  color: #5b5cf6;
+
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   RESOURCE INFORMATION
+========================================================= */
+
+.resource-info {
+  min-width: 0;
+  flex: 1;
 }
 
 .resource-info h3 {
-  margin: 0 0 6px;
-  font-size: 17px;
+  margin: 0 0 7px;
+
+  color: #202939;
+
+  font-size: 15px;
+  line-height: 1.35;
+
+  font-weight: 600;
 }
 
 .resource-info p {
-  margin: 0 0 12px;
-  color: #6b7280;
-  font-size: 13px;
-}
+  margin: 0 0 13px;
 
-@media (max-width: 700px) {
-  .resources-list {
-    grid-template-columns: 1fr;
-  }
-}
+  color: #7b8494;
 
-/* Resource Status */
-
-.resource-status {
-  margin-top: 20px;
-  padding: 25px;
-  text-align: center;
-  color: #6b7280;
-  background: #f9fafb;
-  border-radius: 12px;
-}
-
-.resource-error {
-  color: #dc2626;
-  background: #fef2f2;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 
-/* Buttons */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .view-btn,
 .start-btn {
   border: none;
+
   cursor: pointer;
+
+  font-family: inherit;
+
   font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+
+/* View Course */
+
 .view-btn {
-  padding: 9px 16px;
-  border-radius: 8px;
-  background: #4f46e5;
-  color: white;
+  padding: 8px 13px;
+
+  border-radius: 6px;
+
+  background: #5b5cf6;
+
+  color: #ffffff;
+
+  font-size: 10px;
 }
 
 .view-btn:hover {
-  background: #4338ca;
+  background: #4f50e8;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(91, 92, 246, 0.18);
 }
 
+
+/* Start */
+
 .start-btn {
-  padding: 8px 14px;
-  border-radius: 7px;
-  background: #4f46e5;
-  color: white;
-  font-size: 13px;
+  padding: 8px 13px;
+
+  border-radius: 6px;
+
+  background: #5b5cf6;
+
+  color: #ffffff;
+
+  font-size: 10px;
 }
 
 .start-btn:hover:not(:disabled) {
-  background: #4338ca;
+  background: #4f50e8;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(91, 92, 246, 0.18);
 }
 
 .start-btn:disabled {
-  background: #c7d2fe;
+  background: #cdd0f5;
+
   cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   RESOURCE STATUS
+========================================================= */
+
+.resource-status {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 24px;
+
+  text-align: center;
+
+  color: #7b8494;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e5ea;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.035);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   ERROR STATE
+========================================================= */
+
+.resource-error {
+  color: #c24141;
+
+  background: #fff7f7;
+
+  border-color: #f0caca;
+}
+
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+.resource-status.loading {
+  color: #5b5cf6;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.resource-status h3 {
+  margin: 0 0 6px;
+
+  color: #202939;
+
+  font-size: 15px;
+}
+
+.resource-status p {
+  margin: 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET / LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .learning-resources {
+    padding: 27px 28px;
+  }
+
+  .resources-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .learning-resources {
+    padding: 22px 20px;
+  }
+
+  .learning-resources > h1 {
+    font-size: 25px;
+  }
+
+  .learning-resources > p {
+    font-size: 12px;
+  }
+
+  .resources-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .resource-card {
+    padding: 16px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .learning-resources {
+    padding: 18px 15px;
+  }
+
+  .learning-resources > h1 {
+    font-size: 23px;
+  }
+
+  .resources-list {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-card {
+    padding: 17px;
+  }
+
+  .resource-status {
+    padding: 20px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .learning-resources {
+    padding: 15px 12px;
+  }
+
+  .learning-resources > h1 {
+    font-size: 21px;
+  }
+
+  .resource-card {
+    gap: 11px;
+    padding: 14px;
+  }
+
+  .resource-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .resource-info h3 {
+    font-size: 14px;
+  }
 }

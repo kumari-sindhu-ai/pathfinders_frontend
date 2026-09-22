@@ -222,7 +222,7 @@ function Dashboard() {
             </p>
 
             <h1>
-              Welcome back, {username}! 👋
+              Welcome back, {username}! 
             </h1>
 
             <p className="header-text">
@@ -474,7 +474,7 @@ function Dashboard() {
                 </span>
 
                 <h2>
-                  🤖 AI Recommendations
+                   AI Recommendations
                 </h2>
 
               </div>

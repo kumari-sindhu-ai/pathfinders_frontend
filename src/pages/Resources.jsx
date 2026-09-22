@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
+import "./Resources.css"
 
 function Resources() {
   const [courses, setCourses] = useState([]);
